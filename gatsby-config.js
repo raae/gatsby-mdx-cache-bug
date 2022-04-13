@@ -1,6 +1,6 @@
-require(`dotenv`).config()
+require(`dotenv`).config();
 
-const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
+const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE;
 
 module.exports = {
   siteMetadata: {
@@ -18,9 +18,21 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `cache-bug`,
+          },
+        ],
+      },
+    },
+    {
       resolve: `@lekoarts/gatsby-theme-cara`,
       // See the theme's README for all available options
-      options: {},
+      options: {
+        mdx: false,
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -58,4 +70,4 @@ module.exports = {
       },
     },
   ].filter(Boolean),
-}
+};
